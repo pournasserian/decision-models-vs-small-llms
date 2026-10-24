@@ -29,17 +29,12 @@ Data: LocalLLaMA/typed-decisions test split, Apache 2.0. 400 items, 2000 decisio
 
 ## Against the soft gold
 
-KL divergence from the benchmark's gold distribution, for the models that return one.
+KL divergence from the benchmark's gold distribution, for the decision models, which return one; an LLM here reports a confidence, not a distribution.
 
 | Model | KL from gold |
 |---|---|
 | Jev 1.14 (TypeSafe) | 0.824 |
-| Gemma 4 26B-A4B | 1.276 |
-| Claude Haiku 5.5 | 0.321 |
-| Gemini 3.5 Flash Lite | 1.204 |
-| Qwen3.6 35B-A3B | 0.738 |
 | Kev-4B | 0.225 |
-| GPT-5.4 nano | 0.397 |
 
 ## By workflow
 

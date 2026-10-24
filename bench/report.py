@@ -68,10 +68,10 @@ def task_report(task: str) -> tuple[str, dict[str, Summary]]:
             lines.append(f"| {MODELS[s.model].name} | " + " | ".join(cells) + " |")
     if any(s.kl_from_gold is not None for s in rows):
         lines += ["", "## Against the soft gold", "",
-                  "KL divergence from the benchmark's gold distribution, for the models that return one.", "",
+                  "KL divergence from the benchmark's gold distribution, for the decision models, which return one; an LLM here reports a confidence, not a distribution.", "",
                   "| Model | KL from gold |", "|---|---|"]
         for s in rows:
-            if s.kl_from_gold is not None:
+            if s.kl_from_gold is not None and MODELS[s.model].family == "decision model":
                 lines.append(f"| {MODELS[s.model].name} | {num(s.kl_from_gold)} |")
     lines += task_specific(task, items, {slug: load_results(result_path(task, MODELS[slug])) for slug in summaries})
     # consistency and the reasoning variant, where they were run
