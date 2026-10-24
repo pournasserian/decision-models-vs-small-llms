@@ -46,17 +46,17 @@ def task_report(task: str) -> tuple[str, dict[str, Summary]]:
         rows.append(s)
     rows.sort(key=lambda s: -s.accuracy)
     lines += [
-        "| Model | Kind | Accuracy | 95% CI | Brier (top-1) | ECE | Format failures | p50 | p95 | Cost | Per 1k decisions |",
-        "|---|---|---|---|---|---|---|---|---|---|---|",
+        "| Model | Kind | Items | Accuracy | 95% CI | Brier (top-1) | ECE | Format failures | p50 | p95 | Cost | Per 1k decisions |",
+        "|---|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for s in rows:
         m = MODELS[s.model]
         lines.append(
-            f"| {m.name} | {m.family} | {pct(s.accuracy)} | {pct(s.ci_low)} to {pct(s.ci_high)} | {num(s.brier)} | "
-            f"{num(s.ece)} | {s.format_failures} of {s.n_items} | {ms(s.latency_p50_ms)} | {ms(s.latency_p95_ms)} | "
+            f"| {m.name} | {m.family} | {s.n_items} | {pct(s.accuracy)} | {pct(s.ci_low)} to {pct(s.ci_high)} | {num(s.brier)} | "
+            f"{num(s.ece)} | {s.format_failures} | {ms(s.latency_p50_ms)} | {ms(s.latency_p95_ms)} | "
             f"{usd(s.cost_usd)} | {usd(s.cost_per_1k_decisions, 3)} |"
         )
-    lines.append(f"| Majority class | baseline | {pct(base)} | | | | | | | | |")
+    lines.append(f"| Majority class | baseline | | {pct(base)} | | | | | | | | |")
     types = sorted({t for s in rows for t in s.per_type})
     if len(types) > 1:
         lines += ["", "## By question type", "", "| Model | " + " | ".join(types) + " |", "|---|" + "---|" * len(types)]
@@ -73,6 +73,7 @@ def task_report(task: str) -> tuple[str, dict[str, Summary]]:
         for s in rows:
             if s.kl_from_gold is not None:
                 lines.append(f"| {MODELS[s.model].name} | {num(s.kl_from_gold)} |")
+    lines += task_specific(task, items, {slug: load_results(result_path(task, MODELS[slug])) for slug in summaries})
     # consistency and the reasoning variant, where they were run
     extra = []
     for slug, model in MODELS.items():
@@ -95,6 +96,51 @@ def task_report(task: str) -> tuple[str, dict[str, Summary]]:
         lines += ["", "## Consistency and thinking", "", "| Model | Run | Result |", "|---|---|---|"] + extra
     lines.append("")
     return "\n".join(lines), summaries
+
+
+def _label(r: dict, q: str) -> str | None:
+    return ((r.get("answers") or {}).get(q) or {}).get("label")
+
+
+def task_specific(task: str, items: list, results: dict[str, list[dict]]) -> list[str]:
+    """Extra tables one task calls for: out-of-scope handling, level distance, per-workflow accuracy."""
+    by_id = {it.id: it for it in items}
+    out: list[str] = []
+    if task == "clinc-domains":
+        n_oos = sum(it.gold["domain"] == "out of scope" for it in items)
+        out += ["", "## Out of scope", "", f"{n_oos} of the {len(items)} requests are out of scope. How often each model "
+                "said so, how many of the true ones it caught, and its accuracy on the in-scope requests alone.", "",
+                "| Model | Said out of scope | Caught | In-scope accuracy |", "|---|---|---|---|"]
+        for slug, rs in results.items():
+            main = [r for r in rs if r.get("repeat", 0) == 0 and r["item_id"] in by_id]
+            said = sum(_label(r, "domain") == "out of scope" for r in main)
+            caught = sum(_label(r, "domain") == "out of scope" for r in main if by_id[r["item_id"]].gold["domain"] == "out of scope")
+            ins = [_label(r, "domain") == by_id[r["item_id"]].gold["domain"] for r in main if by_id[r["item_id"]].gold["domain"] != "out of scope"]
+            out.append(f"| {MODELS[slug].name} | {said} | {caught} of {n_oos} | {pct(sum(ins) / len(ins)) if ins else '–'} |")
+    elif task == "sst5":
+        out += ["", "## Distance from the gold level", "", "Mean absolute distance between the chosen level and the gold "
+                "level (0 to 4), and the share of answers within one level.", "",
+                "| Model | Mean distance | Within one level |", "|---|---|---|"]
+        for slug, rs in results.items():
+            d = [abs(int(_label(r, "sentiment")) - int(by_id[r["item_id"]].gold["sentiment"]))
+                 for r in rs if r.get("repeat", 0) == 0 and r["item_id"] in by_id and _label(r, "sentiment") is not None]
+            if d:
+                out.append(f"| {MODELS[slug].name} | {sum(d) / len(d):.3f} | {pct(sum(x <= 1 for x in d) / len(d))} |")
+    elif task == "typed-decisions":
+        wfs = sorted({it.id.rsplit("_", 1)[0] for it in items})
+        out += ["", "## By workflow", "", "| Model | " + " | ".join(w.replace("_", " ") for w in wfs) + " |",
+                "|---|" + "---|" * len(wfs)]
+        for slug, rs in results.items():
+            acc = {w: [0, 0] for w in wfs}
+            for r in rs:
+                if r.get("repeat", 0) or r["item_id"] not in by_id:
+                    continue
+                w = r["item_id"].rsplit("_", 1)[0]
+                for q, g in by_id[r["item_id"]].gold.items():
+                    acc[w][1] += 1
+                    acc[w][0] += _label(r, q) == g
+            out.append(f"| {MODELS[slug].name} | " + " | ".join(pct(c / n) if n else "–" for c, n in acc.values()) + " |")
+    return out
 
 
 def summary_report(all_summaries: dict[str, dict[str, Summary]]) -> str:
