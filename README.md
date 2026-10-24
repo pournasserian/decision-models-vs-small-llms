@@ -86,7 +86,13 @@ so it can be stopped and resumed. The ledger adds a row per run with its measure
   requests in flight per model, p50 and p95. It includes the gateway hop for every model alike.
 - **Cost** is what the gateway reported for each call (`usage.cost`), summed, and divided per 1,000 decisions.
 - **Retries.** A 429, 5xx or network error is retried up to five times with backoff; a 4xx is recorded as a
-  failure and not retried.
+  failure and not retried. A request the gateway still refused after the retries is not a measurement:
+  it is dropped and redone on the next run (`scripts/strip_refused.py`, and the runner does the same on resume).
+- **Format failures are kept.** When Qwen3.6 answers under the strict grammar it sometimes emits only
+  whitespace until the token limit (seen on four providers, 40 of 1,000 Banking77 items). That is what a
+  caller would get, so it stays in the results as a failure and is not retried.
+- **Mammoth-1** is served only on OpenRouter's free tier, 1,000 requests a day, so its run is spread over
+  several days at one request at a time.
 - **Baselines.** Each report shows the majority-class baseline, always answering each question's most common
   gold label.
 

@@ -35,8 +35,10 @@ MODELS: dict[str, Model] = {
         Model("jev-1.14", "Jev 1.14 (TypeSafe)", "typesafe/jev-1.14", "decisions", "decision model", temperature=None),
         Model("kev-4b", "Kev-4B", "jaredpalmer/kev-4b", "decisions", "decision model", open_weights=True, temperature=None),
         Model("laya", "Laya 421M", "convaiinnovations/laya", "vercel", "decision model", open_weights=True, temperature=None),
-        # Baseten's free tier is the only endpoint; 429s are retried with backoff
-        Model("mammoth-1", "Mammoth-1 (Baseten)", "baseten/mammoth-1:free", "decisions", "decision model", temperature=None),
+        # Baseten's free tier is the only endpoint: 1,000 requests a day on OpenRouter, so this one runs
+        # one request at a time and over several days (the runner redoes what the limit refused)
+        Model("mammoth-1", "Mammoth-1 (Baseten)", "baseten/mammoth-1:free", "decisions", "decision model",
+              temperature=None, concurrency=1),
         Model(
             "haiku-5.5",
             "Claude Haiku 5.5",

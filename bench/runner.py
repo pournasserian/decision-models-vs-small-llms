@@ -28,6 +28,11 @@ def key(r: dict) -> tuple:
     return (r["item_id"], r.get("repeat", 0), r.get("paraphrase", 0))
 
 
+def refused(r: dict) -> bool:
+    e = r.get("format_error") or ""
+    return e.startswith("gave up") or e.startswith("http: 429")
+
+
 def load_results(path: Path) -> list[dict]:
     if not path.exists():
         return []
@@ -67,7 +72,8 @@ async def run(
 ) -> list[dict]:
     path = result_path(task, model, variant)
     path.parent.mkdir(parents=True, exist_ok=True)
-    done = {key(r) for r in load_results(path)}
+    # a request the gateway refused (rate limit, outage) is not a measurement: it is redone on the next run
+    done = {key(r) for r in load_results(path) if not refused(r)}
 
     jobs: list[tuple[Item, int, int]] = []
     variants = [items] + (paraphrases or [])
@@ -78,6 +84,9 @@ async def run(
                     jobs.append((it, rep, p_idx))
     if limit is not None:
         jobs = jobs[:limit]
+    kept = [r for r in load_results(path) if not refused(r)]
+    if len(kept) != len(load_results(path)):
+        path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in kept), encoding="utf-8")
     if not jobs:
         print(f"[{task}/{model.slug}/{variant}] nothing to do", file=sys.stderr)
         return load_results(path)
