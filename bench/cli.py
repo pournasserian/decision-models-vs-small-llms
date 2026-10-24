@@ -26,6 +26,8 @@ def pick_tasks(names: list[str] | None) -> list[str]:
 def cmd_run(args: argparse.Namespace) -> None:
     for task in pick_tasks(args.task):
         items = tasks.load(task, args.n)
+        if args.subset:
+            items = items[: args.subset]  # the first items of the fixed sample, so a variant scores items the main run has
         for model in pick_models(args.model):
             variant = args.variant
             reasoning = None
@@ -80,7 +82,8 @@ def main() -> None:
     r.add_argument("--model", nargs="*", help="model slugs, or all")
     r.add_argument("--n", type=int, help="items per task (default: the task's default)")
     r.add_argument("--limit", type=int, help="at most this many new requests per model and task")
-    r.add_argument("--variant", default="main", choices=["main", "low"])
+    r.add_argument("--subset", type=int, help="only the first N items of the task's sample")
+    r.add_argument("--variant", default="main", choices=["main", "low", "repeats"])
     r.add_argument("--repeats", type=int, default=1)
     r.set_defaults(func=cmd_run)
     s = sub.add_parser("show", help="print items with their gold and predicted labels")
@@ -91,6 +94,8 @@ def main() -> None:
     s.add_argument("--wrong", action="store_true")
     s.add_argument("--limit", type=int, default=20)
     s.set_defaults(func=cmd_show)
+    rep = sub.add_parser("report", help="write reports/ from results/")
+    rep.set_defaults(func=lambda a: __import__("bench.report", fromlist=["write_all"]).write_all())
     args = p.parse_args()
     args.func(args)
 
