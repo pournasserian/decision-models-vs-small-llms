@@ -92,5 +92,17 @@ MODELS: dict[str, Model] = {
     ]
 }
 
+def _dotenv() -> None:
+    """Load KEY=value lines from .env at the repo root into the environment, without overriding what is set."""
+    path = ROOT / ".env"
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if "=" in line and not line.lstrip().startswith("#"):
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
+
+
+_dotenv()
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 VERCEL_KEY = os.environ.get("AI_GATEWAY_API_KEY", "")
