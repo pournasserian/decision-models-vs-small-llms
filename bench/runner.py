@@ -96,6 +96,17 @@ async def run(
 
     sem = asyncio.Semaphore(model.concurrency)
     lock = asyncio.Lock()
+    pace = asyncio.Lock()
+    last_sent = [0.0]
+
+    async def paced() -> None:
+        if model.min_interval_s <= 0:
+            return
+        async with pace:
+            wait = last_sent[0] + model.min_interval_s - time.monotonic()
+            if wait > 0:
+                await asyncio.sleep(wait)
+            last_sent[0] = time.monotonic()
     total_cost = 0.0
     n_done = 0
     budget_left = HARD_CAP_USD - spent()
@@ -116,6 +127,7 @@ async def run(
                 delay = 2.0
                 for attempt in range(6):
                     try:
+                        await paced()
                         if model.kind == "chat":
                             res = await clients.call(client, model, it, task, **meta)
                         else:
@@ -132,7 +144,8 @@ async def run(
                             res = Result(it.id, model.slug, task, {}, 0.0, 0.0, None, None, f"gave up: {e}"[:300], None, None,
                                          variant=variant, repeat=rep, paraphrase=p_idx)
                             break
-                        await asyncio.sleep(delay + random.random())
+                        ra = getattr(e, "retry_after", None)
+                        await asyncio.sleep((ra + 1) if ra else delay + random.random())
                         delay = min(delay * 2, 30)
                 async with lock:
                     out.write(json.dumps(to_json(res), ensure_ascii=False) + "\n")

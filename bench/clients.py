@@ -25,12 +25,15 @@ HEADERS_OR = {
 
 
 class RetryableError(Exception):
-    pass
+    def __init__(self, message: str, retry_after: float | None = None):
+        super().__init__(message)
+        self.retry_after = retry_after
 
 
 def _check(r: httpx.Response) -> dict:
     if r.status_code in (408, 429, 500, 502, 503, 504, 524, 529):
-        raise RetryableError(f"{r.status_code}: {r.text[:300]}")
+        ra = r.headers.get("retry-after")
+        raise RetryableError(f"{r.status_code}: {r.text[:300]}", float(ra) if ra and ra.isdigit() else None)
     if r.status_code >= 400:
         raise httpx.HTTPStatusError(f"{r.status_code}: {r.text[:500]}", request=r.request, response=r)
     return r.json()

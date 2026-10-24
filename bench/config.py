@@ -26,6 +26,7 @@ class Model:
     reasoning_low: dict | None = None  # the variant with thinking on
     temperature: float | None = 0.0
     concurrency: int = 4
+    min_interval_s: float = 0.0  # pacing for a rate-limited gateway: at least this long between two requests
     extra: dict = field(default_factory=dict)
 
 
@@ -34,7 +35,9 @@ MODELS: dict[str, Model] = {
     for m in [
         Model("jev-1.14", "Jev 1.14 (TypeSafe)", "typesafe/jev-1.14", "decisions", "decision model", temperature=None),
         Model("kev-4b", "Kev-4B", "jaredpalmer/kev-4b", "decisions", "decision model", open_weights=True, temperature=None),
-        Model("laya", "Laya 421M", "convaiinnovations/laya", "vercel", "decision model", open_weights=True, temperature=None),
+        # Vercel's free credit allows 5 requests a minute, so Laya runs one at a time, paced
+        Model("laya", "Laya 421M", "convaiinnovations/laya", "vercel", "decision model", open_weights=True,
+              temperature=None, concurrency=1, min_interval_s=12.2),
         # Baseten's free tier is the only endpoint: 1,000 requests a day on OpenRouter, so this one runs
         # one request at a time and over several days (the runner redoes what the limit refused)
         Model("mammoth-1", "Mammoth-1 (Baseten)", "baseten/mammoth-1:free", "decisions", "decision model",
