@@ -133,6 +133,9 @@ async def call_openrouter_chat(
     rsn = reasoning if reasoning is not None else model.reasoning
     if rsn:
         body["reasoning"] = rsn
+    if reasoning is not None:
+        # thinking on: the budget must hold the thinking too, or the answer is cut off before it starts
+        body["max_tokens"] = 8000
     t0 = time.perf_counter()
     r = await client.post(OPENROUTER_CHAT, headers=HEADERS_OR, json=body, timeout=180)
     latency = (time.perf_counter() - t0) * 1000
