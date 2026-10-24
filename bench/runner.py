@@ -57,6 +57,9 @@ def ledger_add(task: str, model: Model, variant: str, n: int, cost: float) -> No
 
 def to_json(r: Result) -> dict:
     d = dataclasses.asdict(r)
+    # the questions are the task's, identical on every row and in bench/tasks/; only the state is kept per row
+    if isinstance(d.get("request"), dict):
+        d["request"] = {k: v for k, v in d["request"].items() if k not in ("questions", "messages")}
     return d
 
 

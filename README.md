@@ -52,7 +52,7 @@ export AI_GATEWAY_API_KEY=...      # Laya (optional; the run skips it without a 
 export BENCH_CAP_USD=10            # the run stops when the ledger reaches this (default 100)
 
 uv run python -m bench.cli run --task all --model all            # the main run, resumable
-uv run python -m bench.cli run --task all --model all --variant repeats --subset 100 --repeats 5
+uv run python -m bench.cli run --task all --model all --variant repeats --subset 100 --repeats 3
 uv run python -m bench.cli run --task all --model all --variant low --subset 100
 uv run python -m bench.cli report                                  # writes reports/
 PYTHONPATH=. uv run python scripts/strip_refused.py   # drop rate-limited rows before a rerun
