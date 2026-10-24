@@ -55,6 +55,7 @@ uv run python -m bench.cli run --task all --model all            # the main run,
 uv run python -m bench.cli run --task all --model all --variant repeats --subset 100 --repeats 5
 uv run python -m bench.cli run --task all --model all --variant low --subset 100
 uv run python -m bench.cli report                                  # writes reports/
+PYTHONPATH=. uv run python scripts/strip_refused.py   # drop rate-limited rows before a rerun
 uv run python -m bench.cli show banking77 jev-1.14 --wrong         # look at mistakes
 ```
 
