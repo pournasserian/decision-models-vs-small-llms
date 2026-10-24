@@ -1,6 +1,6 @@
 # Decision models against small LLMs
 
-A rerunnable comparison of the new "decision models" (Jev, Kev, Laya) with small, cheap LLMs
+A rerunnable comparison of the new "decision models" (Jev, Kev, Laya, Mammoth-1) with small, cheap LLMs
 (Claude Haiku 5.5, Gemini 3.5 Flash Lite, GPT-5.4 nano, Qwen3.6 35B-A3B, Gemma 4 26B-A4B) on six
 decisions an agent makes between its generative steps: routing, classification, a guardrail,
 an ordered score and a mixed workflow benchmark.
@@ -19,6 +19,7 @@ The results are discussed in an article on [pournasserian.com](https://pournasse
 | `jev-1.14` | Jev 1.14, TypeSafe AI | decision model, proprietary | OpenRouter Decisions API | `typesafe/jev-1.14-20261014` |
 | `kev-4b` | Kev-4B, Jared Palmer | decision model, Apache 2.0, from Qwen3.5-4B | OpenRouter Decisions API | `jaredpalmer/kev-4b-20260924` |
 | `laya` | Laya 421M, ConvAI Innovations | decision model, Apache 2.0, ModernBERT encoder, zero-shot | Vercel AI Gateway `/v1/evaluate` | |
+| `mammoth-1` | Mammoth-1, Baseten (Base Labs) | decision model, 27B from Qwen3.5-27B, free tier | OpenRouter Decisions API | `baseten/mammoth-1-20261021` |
 | `haiku-5.5` | Claude Haiku 5.5 | LLM | OpenRouter chat | `claude-haiku-5.5-20261007` |
 | `gemini-3.5-flash-lite` | Gemini 3.5 Flash Lite | LLM | OpenRouter chat | `gemini-3.5-flash-lite-20260721` |
 | `gpt-5.4-nano` | GPT-5.4 nano | LLM | OpenRouter chat | `gpt-5.4-nano-20260317` |
