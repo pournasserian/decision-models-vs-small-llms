@@ -56,3 +56,11 @@ OpenRouter catalogue, read 2026-10-23; prices per million tokens, input and outp
 - deepset/prompt-injections: Apache 2.0, 546 train and 116 test, English and German.
 - SST-5: `SetFit/sst5`, test 2,210, five levels.
 - AG News: `fancyzhx/ag_news`, test 7,600, four classes; licence listed as unknown on the Hub.
+
+## The field, as Vercel documents it
+
+- Vercel AI Gateway's decision modality page (https://vercel.com/docs/ai-gateway/modalities/decision, last updated 2026-10-07, read 2026-10-24): decision models return choices, scores and boolean probabilities; several questions run in one request against one state; the gateway's model list has a Decision filter; its related changelog entries announce Baseten's Mammoth-1 and Elephant-1 free on the gateway, Liquid AI's d1 and d1-ultra, Microsoft Decision-1, and an OpenAI Decisions API available through the gateway.
+
+## Vendors, as OpenRouter's catalogue names them (read 2026-10-23)
+
+Claude Haiku 5.5: Anthropic. Gemini 3.5 Flash Lite: Google. GPT-5.4 nano: OpenAI. Gemma 4 26B-A4B: Google DeepMind, a mixture-of-experts model with 3.8B of 25.2B parameters active per token. Qwen3.6 35B-A3B: the Qwen family, 3B active. Mammoth-1: Base Labs, Baseten's research team. Kev: Jared Palmer. Laya: ConvAI Innovations. Jev: TypeSafe AI.
