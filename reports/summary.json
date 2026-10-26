@@ -1037,15 +1037,15 @@
   "mammoth-1": {
    "model": "mammoth-1",
    "task": "ag-news",
-   "n_items": 137,
-   "n_decisions": 137,
+   "n_items": 431,
+   "n_decisions": 431,
    "n_answered": 0,
    "accuracy": 0.0,
    "ci_low": 0.0,
-   "ci_high": 0.027276032081430486,
+   "ci_high": 0.008834481337572118,
    "brier": null,
    "ece": null,
-   "format_failures": 137,
+   "format_failures": 431,
    "latency_p50_ms": null,
    "latency_p95_ms": null,
    "cost_usd": 0.0,
@@ -1055,7 +1055,7 @@
    "per_type": {
     "choice": [
      0,
-     137
+     431
     ]
    },
    "soft_agreement": null,

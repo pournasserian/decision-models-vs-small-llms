@@ -24,7 +24,7 @@ Median latency over all tasks, cost per 1,000 decisions over all tasks, and form
 | Jev 1.14 (TypeSafe) | 139 ms | 209 ms | $0.023 | 0 | 6662 |
 | Kev-4B | 333 ms | 502 ms | $0.009 | 0 | 6662 |
 | Laya 421M | 400 ms | 1,126 ms | $0.000 | 8 | 5662 |
-| Mammoth-1 (Baseten) | 164 ms | 496 ms | $0.000 | 736 | 3799 |
+| Mammoth-1 (Baseten) | 164 ms | 496 ms | $0.000 | 1030 | 4093 |
 | Claude Haiku 5.5 | 1,111 ms | 1,472 ms | $0.085 | 0 | 6662 |
 | Gemini 3.5 Flash Lite | 666 ms | 863 ms | $0.146 | 0 | 6662 |
 | GPT-5.4 nano | 709 ms | 1,111 ms | $0.091 | 0 | 6662 |

@@ -39,6 +39,7 @@ Data: CLINC150 'plus' test split, CC BY 3.0, domains from clinc/oos-eval. 1000 i
 |---|---|---|
 | Jev 1.14 (TypeSafe) | repeats | 100.0% over 100 decisions |
 | Kev-4B | repeats | 99.0% over 100 decisions |
+| Laya 421M | repeats | 100.0% over 100 decisions |
 | Claude Haiku 5.5 | repeats | 98.0% over 100 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 85.0% on 100 items, against 82.0% with thinking off on the same items; p50 1,202 ms; $0.100 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 95.0% over 100 decisions |

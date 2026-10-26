@@ -23,6 +23,7 @@ Data: deepset/prompt-injections, Apache 2.0, train and test splits. 662 items, 6
 |---|---|---|
 | Jev 1.14 (TypeSafe) | repeats | 99.0% over 100 decisions |
 | Kev-4B | repeats | 100.0% over 100 decisions |
+| Laya 421M | repeats | 100.0% over 100 decisions |
 | Claude Haiku 5.5 | repeats | 100.0% over 100 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 95.0% on 100 items, against 95.0% with thinking off on the same items; p50 1,181 ms; $0.063 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 99.0% over 100 decisions |

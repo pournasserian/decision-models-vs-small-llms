@@ -14,7 +14,7 @@ Data: AG News test split, fancyzhx/ag_news. 1000 items, 1000 decisions. Majority
 | Claude Haiku 5.5 | LLM | 1000 | 87.2% | 85.0% to 89.1% | 0.100 | 0.031 | 0 | 1,082 ms | 1,336 ms | $0.0665 | $0.067 |
 | Gemma 4 26B-A4B | LLM | 1000 | 82.6% | 80.1% to 84.8% | 0.161 | 0.160 | 0 | 484 ms | 1,239 ms | $0.0196 | $0.020 |
 | GPT-5.4 nano | LLM | 1000 | 80.5% | 77.9% to 82.8% | 0.134 | 0.086 | 0 | 681 ms | 995 ms | $0.0679 | $0.068 |
-| Mammoth-1 (Baseten) | decision model | 137 | 0.0% | 0.0% to 2.7% | – | – | 137 | – | – | $0.0000 | $0.000 |
+| Mammoth-1 (Baseten) | decision model | 431 | 0.0% | 0.0% to 0.9% | – | – | 431 | – | – | $0.0000 | $0.000 |
 | Majority class | baseline | | 26.0% | | | | | | | | |
 
 ## Consistency and thinking
@@ -23,6 +23,7 @@ Data: AG News test split, fancyzhx/ag_news. 1000 items, 1000 decisions. Majority
 |---|---|---|
 | Jev 1.14 (TypeSafe) | repeats | 98.0% over 100 decisions |
 | Kev-4B | repeats | 100.0% over 100 decisions |
+| Laya 421M | repeats | 100.0% over 100 decisions |
 | Claude Haiku 5.5 | repeats | 98.0% over 100 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 84.0% on 100 items, against 83.0% with thinking off on the same items; p50 1,174 ms; $0.067 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 95.0% over 100 decisions |

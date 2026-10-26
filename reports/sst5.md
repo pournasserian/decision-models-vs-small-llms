@@ -39,6 +39,7 @@ Mean absolute distance between the chosen level and the gold level (0 to 4), and
 |---|---|---|
 | Jev 1.14 (TypeSafe) | repeats | 95.0% over 100 decisions |
 | Kev-4B | repeats | 100.0% over 100 decisions |
+| Laya 421M | repeats | 100.0% over 100 decisions |
 | Claude Haiku 5.5 | repeats | 93.0% over 100 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 56.0% on 100 items, against 62.0% with thinking off on the same items; p50 1,285 ms; $0.062 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 98.0% over 100 decisions |

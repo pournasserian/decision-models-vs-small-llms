@@ -153,3 +153,8 @@ when_utc,task,model,variant,requests,cost_usd
 2026-10-26T03:14:30+00:00,sst5,mammoth-1,main,1000,0.000000
 2026-10-26T04:16:16+00:00,ag-news,laya,main,1000,0.000000
 2026-10-26T05:38:12+00:00,typed-decisions,laya,main,400,0.000000
+2026-10-26T06:40:08+00:00,clinc-domains,laya,repeats,300,0.000000
+2026-10-26T07:41:52+00:00,prompt-injection,laya,repeats,300,0.000000
+2026-10-26T08:42:55+00:00,sst5,laya,repeats,300,0.000000
+2026-10-26T09:43:59+00:00,ag-news,laya,repeats,300,0.000000
+2026-10-26T10:46:52+00:00,typed-decisions,laya,repeats,300,0.000000

@@ -58,6 +58,7 @@ KL divergence from the benchmark's gold distribution, for the decision models, w
 |---|---|---|
 | Jev 1.14 (TypeSafe) | repeats | 98.2% over 500 decisions |
 | Kev-4B | repeats | 99.0% over 500 decisions |
+| Laya 421M | repeats | 100.0% over 500 decisions |
 | Claude Haiku 5.5 | repeats | 91.2% over 500 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 61.2% on 100 items, against 64.0% with thinking off on the same items; p50 1,380 ms; $0.042 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 90.0% over 500 decisions |
