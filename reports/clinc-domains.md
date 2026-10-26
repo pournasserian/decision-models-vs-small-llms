@@ -6,7 +6,7 @@ Data: CLINC150 'plus' test split, CC BY 3.0, domains from clinc/oos-eval. 1000 i
 
 | Model | Kind | Items | Accuracy | 95% CI | Brier (top-1) | ECE | Format failures | p50 | p95 | Cost | Per 1k decisions |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Mammoth-1 (Baseten) | decision model | 58 | 82.8% | 71.1% to 90.4% | 0.106 | 0.111 | 0 | 147 ms | 237 ms | $0.0000 | $0.000 |
+| Mammoth-1 (Baseten) | decision model | 1000 | 83.0% | 80.5% to 85.2% | 0.134 | 0.092 | 0 | 141 ms | 534 ms | $0.0000 | $0.000 |
 | Claude Haiku 5.5 | LLM | 1000 | 78.4% | 75.7% to 80.8% | 0.135 | 0.053 | 0 | 1,040 ms | 1,307 ms | $0.0997 | $0.100 |
 | Gemini 3.5 Flash Lite | LLM | 1000 | 77.6% | 74.9% to 80.1% | 0.182 | 0.177 | 0 | 634 ms | 765 ms | $0.1860 | $0.186 |
 | Jev 1.14 (TypeSafe) | decision model | 1000 | 76.9% | 74.2% to 79.4% | 0.161 | 0.119 | 0 | 139 ms | 216 ms | $0.0268 | $0.027 |
@@ -14,6 +14,7 @@ Data: CLINC150 'plus' test split, CC BY 3.0, domains from clinc/oos-eval. 1000 i
 | Qwen3.6 35B-A3B | LLM | 1000 | 71.5% | 68.6% to 74.2% | 0.253 | 0.243 | 0 | 736 ms | 1,975 ms | $0.0768 | $0.077 |
 | GPT-5.4 nano | LLM | 1000 | 67.3% | 64.3% to 70.1% | 0.197 | 0.152 | 0 | 694 ms | 1,009 ms | $0.1135 | $0.113 |
 | Kev-4B | decision model | 1000 | 61.1% | 58.0% to 64.1% | 0.189 | 0.112 | 0 | 344 ms | 462 ms | $0.0120 | $0.012 |
+| Laya 421M | decision model | 1000 | 29.6% | 26.9% to 32.5% | 0.359 | 0.410 | 0 | 404 ms | 1,144 ms | $0.0000 | $0.000 |
 | Majority class | baseline | | 19.0% | | | | | | | | |
 
 ## Out of scope
@@ -24,7 +25,8 @@ Data: CLINC150 'plus' test split, CC BY 3.0, domains from clinc/oos-eval. 1000 i
 |---|---|---|---|
 | Jev 1.14 (TypeSafe) | 216 | 121 of 190 | 80.0% |
 | Kev-4B | 375 | 136 of 190 | 58.6% |
-| Mammoth-1 (Baseten) | 10 | 0 of 190 | 82.8% |
+| Laya 421M | 781 | 163 of 190 | 16.4% |
+| Mammoth-1 (Baseten) | 252 | 152 of 190 | 83.7% |
 | Claude Haiku 5.5 | 130 | 97 of 190 | 84.8% |
 | Gemini 3.5 Flash Lite | 95 | 78 of 190 | 86.2% |
 | GPT-5.4 nano | 64 | 46 of 190 | 77.4% |

@@ -6,6 +6,7 @@ Data: AG News test split, fancyzhx/ag_news. 1000 items, 1000 decisions. Majority
 
 | Model | Kind | Items | Accuracy | 95% CI | Brier (top-1) | ECE | Format failures | p50 | p95 | Cost | Per 1k decisions |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Laya 421M | decision model | 1000 | 92.4% | 90.6% to 93.9% | 0.091 | 0.152 | 0 | 401 ms | 1,128 ms | $0.0000 | $0.000 |
 | Kev-4B | decision model | 1000 | 90.0% | 88.0% to 91.7% | 0.073 | 0.039 | 0 | 329 ms | 453 ms | $0.0041 | $0.004 |
 | Jev 1.14 (TypeSafe) | decision model | 1000 | 88.3% | 86.2% to 90.1% | 0.086 | 0.054 | 0 | 134 ms | 200 ms | $0.0168 | $0.017 |
 | Gemini 3.5 Flash Lite | LLM | 1000 | 87.9% | 85.7% to 89.8% | 0.107 | 0.090 | 0 | 691 ms | 818 ms | $0.1246 | $0.125 |
@@ -13,6 +14,7 @@ Data: AG News test split, fancyzhx/ag_news. 1000 items, 1000 decisions. Majority
 | Claude Haiku 5.5 | LLM | 1000 | 87.2% | 85.0% to 89.1% | 0.100 | 0.031 | 0 | 1,082 ms | 1,336 ms | $0.0665 | $0.067 |
 | Gemma 4 26B-A4B | LLM | 1000 | 82.6% | 80.1% to 84.8% | 0.161 | 0.160 | 0 | 484 ms | 1,239 ms | $0.0196 | $0.020 |
 | GPT-5.4 nano | LLM | 1000 | 80.5% | 77.9% to 82.8% | 0.134 | 0.086 | 0 | 681 ms | 995 ms | $0.0679 | $0.068 |
+| Mammoth-1 (Baseten) | decision model | 137 | 0.0% | 0.0% to 2.7% | – | – | 137 | – | – | $0.0000 | $0.000 |
 | Majority class | baseline | | 26.0% | | | | | | | | |
 
 ## Consistency and thinking

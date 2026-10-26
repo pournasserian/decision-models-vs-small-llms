@@ -13,6 +13,7 @@ Data: LocalLLaMA/typed-decisions test split, Apache 2.0. 400 items, 2000 decisio
 | Qwen3.6 35B-A3B | LLM | 400 | 67.4% | 65.3% to 69.4% | 0.241 | 0.188 | 7 | 1,856 ms | 4,653 ms | $0.0926 | $0.046 |
 | Kev-4B | decision model | 400 | 66.8% | 64.8% to 68.9% | 0.242 | 0.173 | 0 | 367 ms | 583 ms | $0.0085 | $0.004 |
 | GPT-5.4 nano | LLM | 400 | 66.8% | 64.7% to 68.8% | 0.214 | 0.075 | 0 | 977 ms | 1,362 ms | $0.0974 | $0.049 |
+| Laya 421M | decision model | 400 | 35.4% | 33.4% to 37.6% | 0.258 | 0.157 | 7 | 406 ms | 1,125 ms | $0.0000 | $0.000 |
 | Majority class | baseline | | 46.1% | | | | | | | | |
 
 ## By question type
@@ -26,6 +27,7 @@ Data: LocalLLaMA/typed-decisions test split, Apache 2.0. 400 items, 2000 decisio
 | Qwen3.6 35B-A3B | 66.3% (600) | 78.7% (600) | 59.8% (800) |
 | Kev-4B | 64.7% (600) | 76.2% (600) | 61.5% (800) |
 | GPT-5.4 nano | 66.5% (600) | 78.5% (600) | 58.2% (800) |
+| Laya 421M | 28.5% (600) | 47.5% (600) | 31.6% (800) |
 
 ## Against the soft gold
 
@@ -35,6 +37,7 @@ KL divergence from the benchmark's gold distribution, for the decision models, w
 |---|---|
 | Jev 1.14 (TypeSafe) | 0.824 |
 | Kev-4B | 0.225 |
+| Laya 421M | 0.564 |
 
 ## By workflow
 
@@ -42,6 +45,7 @@ KL divergence from the benchmark's gold distribution, for the decision models, w
 |---|---|---|---|---|
 | Jev 1.14 (TypeSafe) | 62.8% | 83.4% | 79.0% | 73.2% |
 | Kev-4B | 57.0% | 72.2% | 68.2% | 70.0% |
+| Laya 421M | 38.8% | 36.2% | 35.2% | 31.6% |
 | Claude Haiku 5.5 | 64.0% | 80.0% | 75.4% | 71.2% |
 | Gemini 3.5 Flash Lite | 62.2% | 76.6% | 77.4% | 69.8% |
 | GPT-5.4 nano | 57.4% | 76.0% | 67.0% | 66.8% |

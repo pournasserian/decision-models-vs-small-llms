@@ -11,8 +11,10 @@ Data: deepset/prompt-injections, Apache 2.0, train and test splits. 662 items, 6
 | Gemini 3.5 Flash Lite | LLM | 662 | 91.1% | 88.7% to 93.0% | 0.089 | 0.089 | 0 | 632 ms | 829 ms | $0.0774 | $0.117 |
 | Claude Haiku 5.5 | LLM | 662 | 87.8% | 85.0% to 90.0% | 0.109 | 0.071 | 0 | 1,154 ms | 1,669 ms | $0.0408 | $0.062 |
 | Jev 1.14 (TypeSafe) | decision model | 662 | 85.2% | 82.3% to 87.7% | 0.110 | 0.071 | 0 | 127 ms | 180 ms | $0.0099 | $0.015 |
+| Laya 421M | decision model | 662 | 79.5% | 76.2% to 82.4% | 0.171 | 0.132 | 1 | 383 ms | 1,073 ms | $0.0000 | $0.000 |
 | GPT-5.4 nano | LLM | 662 | 77.0% | 73.7% to 80.1% | 0.203 | 0.184 | 0 | 689 ms | 1,015 ms | $0.0422 | $0.064 |
 | Kev-4B | decision model | 662 | 76.6% | 73.2% to 79.7% | 0.144 | 0.111 | 0 | 332 ms | 767 ms | $0.0023 | $0.003 |
+| Mammoth-1 (Baseten) | decision model | 662 | 26.0% | 22.8% to 29.5% | 0.159 | 0.105 | 440 | 125 ms | 265 ms | $0.0000 | $0.000 |
 | Majority class | baseline | | 60.3% | | | | | | | | |
 
 ## Consistency and thinking

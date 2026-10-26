@@ -6,7 +6,7 @@ Data: Banking77, PolyAI, CC BY 4.0, test split. 1000 items, 1000 decisions. Majo
 
 | Model | Kind | Items | Accuracy | 95% CI | Brier (top-1) | ECE | Format failures | p50 | p95 | Cost | Per 1k decisions |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Mammoth-1 (Baseten) | decision model | 983 | 92.9% | 91.1% to 94.3% | 0.048 | 0.019 | 0 | 220 ms | 518 ms | $0.0000 | $0.000 |
+| Mammoth-1 (Baseten) | decision model | 1000 | 93.0% | 91.2% to 94.4% | 0.048 | 0.018 | 0 | 218 ms | 518 ms | $0.0000 | $0.000 |
 | Kev-4B | decision model | 1000 | 86.0% | 83.7% to 88.0% | 0.137 | 0.169 | 0 | 383 ms | 548 ms | $0.0327 | $0.033 |
 | Gemini 3.5 Flash Lite | LLM | 1000 | 81.7% | 79.2% to 84.0% | 0.164 | 0.163 | 0 | 652 ms | 782 ms | $0.2540 | $0.254 |
 | Jev 1.14 (TypeSafe) | decision model | 1000 | 80.2% | 77.6% to 82.6% | 0.118 | 0.075 | 0 | 149 ms | 223 ms | $0.0677 | $0.068 |

@@ -13,6 +13,8 @@ Data: SST-5 test split, SetFit/sst5. 1000 items, 1000 decisions. Majority-class 
 | Gemma 4 26B-A4B | LLM | 1000 | 57.0% | 53.9% to 60.0% | 0.374 | 0.365 | 3 | 618 ms | 1,832 ms | $0.0184 | $0.018 |
 | Gemini 3.5 Flash Lite | LLM | 1000 | 56.0% | 52.9% to 59.0% | 0.356 | 0.325 | 0 | 681 ms | 805 ms | $0.1158 | $0.116 |
 | GPT-5.4 nano | LLM | 1000 | 50.0% | 46.9% to 53.1% | 0.355 | 0.330 | 0 | 708 ms | 1,102 ms | $0.0632 | $0.063 |
+| Mammoth-1 (Baseten) | decision model | 1000 | 49.7% | 46.6% to 52.8% | 0.239 | 0.064 | 159 | 129 ms | 286 ms | $0.0000 | $0.000 |
+| Laya 421M | decision model | 1000 | 31.3% | 28.5% to 34.2% | 0.224 | 0.137 | 0 | 401 ms | 1,116 ms | $0.0000 | $0.000 |
 | Majority class | baseline | | 27.1% | | | | | | | | |
 
 ## Distance from the gold level
@@ -23,6 +25,8 @@ Mean absolute distance between the chosen level and the gold level (0 to 4), and
 |---|---|---|
 | Jev 1.14 (TypeSafe) | 0.475 | 94.8% |
 | Kev-4B | 0.443 | 97.4% |
+| Laya 421M | 1.060 | 73.6% |
+| Mammoth-1 (Baseten) | 0.433 | 97.9% |
 | Claude Haiku 5.5 | 0.433 | 98.2% |
 | Gemini 3.5 Flash Lite | 0.474 | 97.0% |
 | GPT-5.4 nano | 0.572 | 93.9% |

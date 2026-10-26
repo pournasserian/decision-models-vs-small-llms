@@ -144,3 +144,12 @@ when_utc,task,model,variant,requests,cost_usd
 2026-10-24T03:35:01+00:00,typed-decisions,gpt-5.4-nano,low,100,0.035159
 2026-10-24T03:46:42+00:00,typed-decisions,qwen3.6-35b-a3b,low,100,0.279918
 2026-10-24T04:02:14+00:00,typed-decisions,gemma-4-26b-a4b,low,100,0.079924
+2026-10-25T15:51:55+00:00,banking77,mammoth-1,main,17,0.000000
+2026-10-25T16:18:02+00:00,clinc-domains,mammoth-1,main,942,0.000000
+2026-10-25T19:09:00+00:00,clinc-domains,laya,main,969,0.000000
+2026-10-25T21:26:20+00:00,prompt-injection,laya,main,662,0.000000
+2026-10-26T00:04:03+00:00,prompt-injection,mammoth-1,main,662,0.000000
+2026-10-26T00:52:18+00:00,sst5,laya,main,1000,0.000000
+2026-10-26T03:14:30+00:00,sst5,mammoth-1,main,1000,0.000000
+2026-10-26T04:16:16+00:00,ag-news,laya,main,1000,0.000000
+2026-10-26T05:38:12+00:00,typed-decisions,laya,main,400,0.000000
