@@ -125,7 +125,8 @@ async def run(
                 if reasoning is not None:
                     meta["reasoning"] = reasoning
                 delay = 2.0
-                for attempt in range(6):
+                attempt = 0
+                while True:
                     try:
                         await paced()
                         if model.kind == "chat":
@@ -140,7 +141,16 @@ async def run(
                                      variant=variant, repeat=rep, paraphrase=p_idx)
                         break
                     except (clients.RetryableError, httpx.TransportError, httpx.ReadTimeout) as e:
-                        if attempt == 5:
+                        reset = getattr(e, "reset_at", None)
+                        if reset:
+                            # a used-up daily quota is not an outage: wait for its reset, then send the same request again
+                            wait = max(reset - time.time(), 0.0) + 30
+                            print(f"[{task}/{model.slug}/{variant}] daily quota used up, resuming in {wait / 60:.0f} min",
+                                  file=sys.stderr)
+                            await asyncio.sleep(wait)
+                            continue
+                        attempt += 1
+                        if attempt == 6:
                             res = Result(it.id, model.slug, task, {}, 0.0, 0.0, None, None, f"gave up: {e}"[:300], None, None,
                                          variant=variant, repeat=rep, paraphrase=p_idx)
                             break

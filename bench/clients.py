@@ -25,15 +25,28 @@ HEADERS_OR = {
 
 
 class RetryableError(Exception):
-    def __init__(self, message: str, retry_after: float | None = None):
+    def __init__(self, message: str, retry_after: float | None = None, reset_at: float | None = None):
         super().__init__(message)
         self.retry_after = retry_after
+        self.reset_at = reset_at  # epoch seconds at which a daily quota resets, when the gateway names one
+
+
+def _daily_reset(r: httpx.Response) -> float | None:
+    # OpenRouter's free-tier daily limit names its reset (ms since the epoch) in the error's metadata
+    try:
+        meta = r.json()["error"]["metadata"]
+        if str(meta.get("limit_source", "")).endswith("daily"):
+            return int(meta["headers"]["X-RateLimit-Reset"]) / 1000
+    except (ValueError, KeyError, TypeError):
+        pass
+    return None
 
 
 def _check(r: httpx.Response) -> dict:
     if r.status_code in (408, 429, 500, 502, 503, 504, 524, 529):
         ra = r.headers.get("retry-after")
-        raise RetryableError(f"{r.status_code}: {r.text[:300]}", float(ra) if ra and ra.isdigit() else None)
+        reset = _daily_reset(r) if r.status_code == 429 else None
+        raise RetryableError(f"{r.status_code}: {r.text[:300]}", float(ra) if ra and ra.isdigit() else None, reset)
     if r.status_code >= 400:
         raise httpx.HTTPStatusError(f"{r.status_code}: {r.text[:500]}", request=r.request, response=r)
     return r.json()
