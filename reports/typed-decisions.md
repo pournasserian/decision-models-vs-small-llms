@@ -6,6 +6,7 @@ Data: LocalLLaMA/typed-decisions test split, Apache 2.0. 400 items, 2000 decisio
 
 | Model | Kind | Items | Accuracy | 95% CI | Brier (top-1) | ECE | Format failures | p50 | p95 | Cost | Per 1k decisions |
 |---|---|---|---|---|---|---|---|---|---|---|---|
+| Mammoth-1 (Baseten) | decision model | 400 | 76.5% | 74.6% to 78.4% | 0.189 | 0.174 | 0 | 174 ms | 473 ms | $0.0000 | $0.000 |
 | Jev 1.14 (TypeSafe) | decision model | 400 | 74.6% | 72.6% to 76.5% | 0.173 | 0.057 | 0 | 143 ms | 203 ms | $0.0159 | $0.008 |
 | Gemma 4 26B-A4B | LLM | 400 | 74.6% | 72.6% to 76.4% | 0.208 | 0.171 | 0 | 1,784 ms | 4,303 ms | $0.0373 | $0.019 |
 | Claude Haiku 5.5 | LLM | 400 | 72.7% | 70.7% to 74.6% | 0.178 | 0.030 | 0 | 1,316 ms | 1,635 ms | $0.0916 | $0.046 |
@@ -20,6 +21,7 @@ Data: LocalLLaMA/typed-decisions test split, Apache 2.0. 400 items, 2000 decisio
 
 | Model | choice | noul | score |
 |---|---|---|---|
+| Mammoth-1 (Baseten) | 69.7% (600) | 85.7% (600) | 74.9% (800) |
 | Jev 1.14 (TypeSafe) | 71.0% (600) | 82.3% (600) | 71.5% (800) |
 | Gemma 4 26B-A4B | 72.5% (600) | 81.0% (600) | 71.2% (800) |
 | Claude Haiku 5.5 | 66.3% (600) | 81.5% (600) | 70.8% (800) |
@@ -35,6 +37,7 @@ KL divergence from the benchmark's gold distribution, for the decision models, w
 
 | Model | KL from gold |
 |---|---|
+| Mammoth-1 (Baseten) | 0.131 |
 | Jev 1.14 (TypeSafe) | 0.824 |
 | Kev-4B | 0.225 |
 | Laya 421M | 0.564 |
@@ -46,6 +49,7 @@ KL divergence from the benchmark's gold distribution, for the decision models, w
 | Jev 1.14 (TypeSafe) | 62.8% | 83.4% | 79.0% | 73.2% |
 | Kev-4B | 57.0% | 72.2% | 68.2% | 70.0% |
 | Laya 421M | 38.8% | 36.2% | 35.2% | 31.6% |
+| Mammoth-1 (Baseten) | 67.0% | 84.4% | 79.4% | 75.4% |
 | Claude Haiku 5.5 | 64.0% | 80.0% | 75.4% | 71.2% |
 | Gemini 3.5 Flash Lite | 62.2% | 76.6% | 77.4% | 69.8% |
 | GPT-5.4 nano | 57.4% | 76.0% | 67.0% | 66.8% |
@@ -59,6 +63,7 @@ KL divergence from the benchmark's gold distribution, for the decision models, w
 | Jev 1.14 (TypeSafe) | repeats | 98.2% over 500 decisions |
 | Kev-4B | repeats | 99.0% over 500 decisions |
 | Laya 421M | repeats | 100.0% over 500 decisions |
+| Mammoth-1 (Baseten) | repeats | 100.0% over 500 decisions |
 | Claude Haiku 5.5 | repeats | 91.2% over 500 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 61.2% on 100 items, against 64.0% with thinking off on the same items; p50 1,380 ms; $0.042 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 90.0% over 500 decisions |

@@ -38,10 +38,10 @@ MODELS: dict[str, Model] = {
         # Vercel's free credit allows 5 requests a minute, so Laya runs one at a time, paced
         Model("laya", "Laya 421M", "convaiinnovations/laya", "vercel", "decision model", open_weights=True,
               temperature=None, concurrency=1, min_interval_s=12.2),
-        # Baseten's free tier is the only endpoint: 1,000 requests a day on OpenRouter, so this one runs
-        # one request at a time and over several days (the runner redoes what the limit refused)
-        Model("mammoth-1", "Mammoth-1 (Baseten)", "baseten/mammoth-1:free", "decisions", "decision model",
-              temperature=None, concurrency=1),
+        # the main run used the free endpoint (1,000 requests a day, one at a time, over several days);
+        # OpenRouter withdrew it on 2026-10-28, so the repeat pass ran on the paid slug
+        Model("mammoth-1", "Mammoth-1 (Baseten)", "baseten/mammoth-1", "decisions", "decision model",
+              temperature=None),
         Model(
             "haiku-5.5",
             "Claude Haiku 5.5",

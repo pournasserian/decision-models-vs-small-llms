@@ -22,6 +22,7 @@ Data: Banking77, PolyAI, CC BY 4.0, test split. 1000 items, 1000 decisions. Majo
 |---|---|---|
 | Jev 1.14 (TypeSafe) | repeats | 97.0% over 100 decisions |
 | Kev-4B | repeats | 100.0% over 100 decisions |
+| Mammoth-1 (Baseten) | repeats | 100.0% over 100 decisions |
 | Claude Haiku 5.5 | repeats | 95.0% over 100 decisions |
 | Claude Haiku 5.5 | thinking on (low) | 82.0% on 100 items, against 81.0% with thinking off on the same items; p50 1,173 ms; $0.207 per 1k decisions |
 | Gemini 3.5 Flash Lite | repeats | 98.0% over 100 decisions |

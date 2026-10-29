@@ -27,7 +27,7 @@ Everything else the article says comes from `reports/`, `results/`, `ledger.csv`
 
 ## Mammoth-1 (Baseten)
 
-- "A 27B decision model from Base Labs, Baseten's research team, built on Qwen3.5-27B", text or JSON state and typed questions. On OpenRouter as `baseten/mammoth-1:free` only (`baseten/mammoth-1-20261021` in responses), the free tier, which OpenRouter limits to 1,000 requests a day for an account with a high balance (`free-models-per-day-high-balance`, seen 2026-10-24). Model page https://openrouter.ai/baseten/mammoth-1, read 2026-10-23.
+- "A 27B decision model from Base Labs, Baseten's research team, built on Qwen3.5-27B", text or JSON state and typed questions. On OpenRouter as `baseten/mammoth-1:free` only (`baseten/mammoth-1-20261021` in responses), the free tier, which OpenRouter limits to 1,000 requests a day for an account with a high balance (`free-models-per-day-high-balance`, seen 2026-10-24). Model page https://openrouter.ai/baseten/mammoth-1, read 2026-10-23. On 2026-10-28 the free endpoint began answering 404, "This model is unavailable for free. The paid version is available now - use this slug instead: baseten/mammoth-1"; the paid endpoint charged $0.10 per million input tokens and nothing for output (`usage.cost` on the repeat pass, 2026-10-29 UTC).
 - On the typed-decisions leaderboard: 0.768 accuracy, KL 0.122, Brier 0.063, ECE 0.153, p50 415 ms, third among zero-shot models.
 
 ## The typed-decisions benchmark
